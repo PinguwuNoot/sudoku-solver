@@ -1,15 +1,15 @@
 class SudokuBoard:
     def __init__(self, board=None):
         if board is None:
-            self.board = [[0,0,0,0,0,0,0,0,0],
-                          [0,0,0,0,0,0,0,0,0],
-                          [0,0,0,0,0,0,0,0,0],
-                          [0,0,0,0,0,0,0,0,0],
-                          [0,0,0,0,0,0,0,0,0],
-                          [0,0,0,0,0,0,0,0,0],
-                          [0,0,0,0,0,0,0,0,0],
-                          [0,0,0,0,0,0,0,0,0],
-                          [0,0,0,0,0,0,0,0,0]]
+            self.board = [[0, 0, 0, 0, 0, 0, 0, 0, 0],
+                          [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                          [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                          [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                          [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                          [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                          [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                          [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                          [0, 0, 0, 0, 0, 0, 0, 0, 0]]
         else:
             self.board = board
 
@@ -17,7 +17,7 @@ class SudokuBoard:
         self.board = board
 
     def solve(self):
-        empty_square = self.find_empty()
+        empty_square = self._find_empty()
         if not empty_square:
             return True
         else:
@@ -30,11 +30,11 @@ class SudokuBoard:
                     return True
                 self.board[y][x] = 0
 
-    def find_empty(self):
+    def _find_empty(self):
         for i in range(len(self.board)):
             for j in range(len(self.board[0])):
                 if self.board[i][j] == 0:
-                    return (i, j)
+                    return i, j
         return None
 
     def _valid(self, num, x, y):
@@ -48,8 +48,8 @@ class SudokuBoard:
 
         box_x = x // 3
         box_y = y // 3
-        for i in range(box_y*3, box_y*3 + 3):
-            for j in range(box_x*3, box_x*3 + 3):
+        for i in range(box_y * 3, box_y * 3 + 3):
+            for j in range(box_x * 3, box_x * 3 + 3):
                 if self.board[i][j] == num:
                     return False
         return True
